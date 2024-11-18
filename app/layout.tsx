@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Navbar from "./components/Navbar";
 import "./globals.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Host_Grotesk } from "next/font/google";
 
 const hostGrotesk = Host_Grotesk({
@@ -30,6 +32,7 @@ export default function RootLayout({
             </p>
           </div>
         </footer>
+        <ToastContainer />
       </body>
     </html>
   );

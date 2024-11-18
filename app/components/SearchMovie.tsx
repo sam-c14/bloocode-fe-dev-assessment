@@ -4,10 +4,13 @@ import { customFetch } from "../ajax";
 import { debounce } from "../utils";
 import MovieGrid from "./MovieGrid";
 import { Movie } from "../types";
+import Spinner from "./Spinner";
+import { toast } from "react-toastify";
 
 const SearchMovie = () => {
   const [movieTitle, setMovieTitle] = useState("");
   const [filteredMovies, setFilteredMovies] = useState<Movie[] | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = debounce(async (value: string) => {
     if (!value.length) {
@@ -15,13 +18,16 @@ const SearchMovie = () => {
     }
 
     setMovieTitle(value);
+    setIsLoading(true);
     try {
       const response = await customFetch(
         `https://api.themoviedb.org/3/search/movie?query=${value}&language=en-US&page=1`
       );
       setFilteredMovies(response?.results);
-    } catch (error) {
-      console.log(error);
+    } catch {
+      toast.error("There was an issue fetching the movie you're looking for");
+    } finally {
+      setIsLoading(false);
     }
   }, 2000);
 
@@ -40,6 +46,11 @@ const SearchMovie = () => {
           }
         />
       </div>
+      {isLoading && (
+        <div className="grid place-items-center mt-5">
+          <Spinner />
+        </div>
+      )}
       {filteredMovies && (
         <div className="flex flex-col gap-y-2 mt-4">
           <h2 className="text-3xl text-start font-semibold text-white pl-10">
