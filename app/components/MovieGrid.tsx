@@ -75,6 +75,13 @@ const MovieGrid = ({ movie_data, useFavorites }: MovieGrid) => {
         </div>
       )}
       {!hasMore && <div>No more movies to display.</div>}
+      {!movies?.length && useFavorites ? (
+        <div className="grid min-h-screen place-items-center text-white sm:text-2xl text-base font-semibold">
+          You don't have any favorite stores
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 };
