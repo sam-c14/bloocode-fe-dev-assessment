@@ -23,7 +23,6 @@ const Favorite: FC<FavoriteProps> = ({ item }) => {
     setValue([...storedValue, item]);
   };
   const removeItem = () => {
-    // Filter out the item from the array and update localStorage
     setValue(storedValue.filter((fav) => fav?.id !== item?.id));
   };
 
