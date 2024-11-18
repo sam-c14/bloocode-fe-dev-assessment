@@ -1,10 +1,14 @@
 "use client";
-import { useMemo } from "react";
+import { FC, useMemo } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
 import Heart from "../icons/Heart";
 import { Movie } from "../types";
 
-const Favorite = ({ item }: { item: any }) => {
+type FavoriteProps = {
+  item: Movie;
+};
+
+const Favorite: FC<FavoriteProps> = ({ item }) => {
   const { storedValue, setValue } = useLocalStorage<Movie[]>(
     "favoriteItems",
     []

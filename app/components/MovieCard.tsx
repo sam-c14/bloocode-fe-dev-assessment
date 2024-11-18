@@ -1,7 +1,12 @@
-// import React from 'react'
+import { FC } from "react";
 import Link from "next/link";
+import { Movie } from "../types";
 
-const MovieCard = ({ data }: { data: any }) => {
+type MovieCardProps = {
+  data: Movie;
+};
+
+const MovieCard: FC<MovieCardProps> = ({ data }) => {
   return (
     <div className="relative border-black border rounded-lg shadow-md overflow-hidden group">
       <img

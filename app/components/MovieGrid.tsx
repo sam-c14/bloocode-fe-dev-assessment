@@ -3,16 +3,15 @@ import React, { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
 import { Movie } from "../types";
 import useLocalStorage from "../hooks/useLocalStorage";
-import { getMoreMovies } from "../api";
+import { getMoreMovies } from "../ajax";
 import Spinner from "./Spinner";
 
-const MovieGrid = ({
-  movie_data,
-  useFavorites,
-}: {
+type MovieGrid = {
   movie_data?: Movie[];
   useFavorites?: boolean;
-}) => {
+};
+
+const MovieGrid = ({ movie_data, useFavorites }: MovieGrid) => {
   const { storedValue } = useLocalStorage<Movie[]>("favoriteItems", []);
 
   const [movies, setMovies] = useState<Movie[]>(
