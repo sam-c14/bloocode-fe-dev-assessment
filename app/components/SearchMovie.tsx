@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { customFetch } from "../api";
+import { customFetch } from "../ajax";
 import { debounce } from "../utils";
 import MovieGrid from "./MovieGrid";
 import { Movie } from "../types";

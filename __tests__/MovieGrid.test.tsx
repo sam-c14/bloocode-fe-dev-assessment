@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import MovieGrid from "@/app/components/MovieGrid";
-import { getMoreMovies } from "@/app/api";
+import { getMoreMovies } from "@/app/ajax";
 import { mockMovies } from "@/app/data";
 
 jest.mock("@/app/api", () => ({
