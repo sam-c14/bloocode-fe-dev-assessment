@@ -34,7 +34,9 @@ const MovieGrid = ({ movie_data, useFavorites }: MovieGrid) => {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    if (!useFavorites) {
+      window.addEventListener("scroll", handleScroll);
+    }
     return () => window.removeEventListener("scroll", handleScroll);
   }, [loading, hasMore]);
 

@@ -23,6 +23,13 @@ export default function RootLayout({
       <body className={`${hostGrotesk.className} antialiased bg-black`}>
         <Navbar />
         {children}
+        <footer className="bg-black text-white py-4">
+          <div className="max-w-7xl mx-auto text-center">
+            <p className="text-sm">
+              &copy; {new Date().getFullYear()} BlooMovies. All rights reserved.
+            </p>
+          </div>
+        </footer>
       </body>
     </html>
   );
