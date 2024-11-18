@@ -12,7 +12,7 @@ type MovieGrid = {
 };
 
 const MovieGrid = ({ movie_data, useFavorites }: MovieGrid) => {
-  const { storedValue } = useLocalStorage<Movie[]>("favoriteItems", []);
+  const { storedValue, clear } = useLocalStorage<Movie[]>("favoriteItems", []);
 
   const [movies, setMovies] = useState<Movie[]>(
     useFavorites ? storedValue : movie_data!
@@ -58,8 +58,23 @@ const MovieGrid = ({ movie_data, useFavorites }: MovieGrid) => {
     }
   };
 
+  const clearAllSavedStores = () => {
+    setMovies([]);
+    clear();
+  };
+
   return (
     <div>
+      {useFavorites && movies?.length && (
+        <div className="mt-24 px-10">
+          <button
+            onClick={clearAllSavedStores}
+            className="inline-block uppercase text-blue-800  py-2 px-4 rounded-lg text-base lg:text-2xl md:text-xl transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            Clear All
+          </button>
+        </div>
+      )}
       <div className="grid xl:grid-cols-4 md:grid-cols-3 grid-cols-1 mt-16 gap-7 px-10">
         {movies?.map((data, index) => (
           <MovieCard data={data} key={index} />
