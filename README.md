@@ -46,6 +46,16 @@ To run the project locally on your machine, follow these simple steps:
 
 ```
 
+│
+├── /__mocks__                    # Mocks for tests
+│  ├── /customFetch.ts
+│  ├── /getMoreMovies.ts
+│
+├── /__tests__                    # Contains test files
+│  ├── /Home.test.tsx
+│  ├── /MovieGrid.test.tsx
+│
+│
 ├── /app
 │  ├── /ajax
 │  │   ├── /index.ts
@@ -63,7 +73,6 @@ To run the project locally on your machine, follow these simple steps:
 │  ├── /favorites          # Page for rendering user favorite stores
 │  │   └── /page.tsx
 │  ├── /hooks              # Custom hooks for app functionality
-│  │   ├── /index.tsx
 │  │   └── /useLocalStorage.ts
 │  ├── /icons              # Icons used throughout the app (SVGs in React tsx components)
 │  │   └── /Heart.tsx
@@ -72,27 +81,36 @@ To run the project locally on your machine, follow these simple steps:
 │  ├── /utils              # Utility functions or helpers used throughout the app
 │  │   ├── /index.ts
 │
-├── /components               # Contains reusable UI components (buttons, headers, etc.)
-│  ├── /Button.tsx         # A reusable button component
-│  ├── /Card.tsx           # A card component used for displaying movie information
+├── .env.example          # Contains non-sensitive reusable secrets
 │
-├── /lib                      # Utility functions or helpers used throughout the app
-│  ├── /api.ts             # API call functions
-│  ├── /utils.ts           # General utility functions
+├── eslintrc.json
 │
-├── /styles                   # Contains TailwindCSS configuration and custom styles
-│  ├── /globals.css        # Global styles
-│  ├── /tailwind.config.js # TailwindCSS configuration
+├── .gitignore
+|
+├── jest.config.ts
+|
+├── mods.d.ts
+|
+├── next.env.ts
+|
+├── next.config.ts
+|
+├── package-lock.json
+|
+├── package.json
+|
+├── postcss.config.json
+|
+├── README.md
+|
+├── setupTests.ts
+|
+├── tailwind.config.ts
+|
+├── tsconfig.json
 │
-├── /__mocks__                    # Mocks for tests
-│  ├── /customFetch.ts
-│  ├── /getMoreMovies.ts
-│
-├── /__tests__                    # Contains test files
-│  ├── /Home.test.tsx
-│  ├── /MovieGrid.test.tsx
-│
-│
+|
+
 ```
 
 # Design Decisions and Trade-offs
