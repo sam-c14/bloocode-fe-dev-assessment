@@ -5,7 +5,11 @@ import Favorite from "@/app/components/Favorite";
 import { CastMember, MovieDetails as MovieDetailsT } from "@/app/types";
 import Spinner from "@/app/components/Spinner";
 
-export default async function MovieDetails({ params }: { params: any }) {
+export default async function MovieDetails({
+  params,
+}: {
+  params: Promise<{ id: number }>;
+}) {
   let data: MovieDetailsT | null = null;
   let movieCast: string = "";
   const routeParams = await params;
@@ -15,12 +19,12 @@ export default async function MovieDetails({ params }: { params: any }) {
   try {
     const [movieData, movieCredits] = await Promise.all([
       customFetch(
-        `https://api.themoviedb.org/3/movie/${movie_id}?language=en-US`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}${movie_id}?language=en-US`,
         {},
         "no-cache"
       ),
       customFetch(
-        `https://api.themoviedb.org/3/movie/${movie_id}/credits?language=en-US`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}${movie_id}/credits?language=en-US`,
         {},
         "no-cache"
       ),
@@ -30,7 +34,7 @@ export default async function MovieDetails({ params }: { params: any }) {
       ?.slice(0, 5)
       ?.map((people: CastMember) => people.name)
       ?.join(", ");
-  } catch (error) {
+  } catch {
     error = "Error fetching data";
   }
 
@@ -76,7 +80,7 @@ export default async function MovieDetails({ params }: { params: any }) {
                 (item: { id: number; name: string }, index) => (
                   <div key={item.id} className="flex items-center gap-x-3">
                     <p>{genres?.find((genre) => genre?.id == item.id)?.name}</p>
-                    {index !== data?.genres?.length! - 1 && (
+                    {index !== (data?.genres?.length ?? 0) - 1 && (
                       <span className="w-2 h-2 rounded-full bg-white"></span>
                     )}
                   </div>

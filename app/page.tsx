@@ -14,12 +14,12 @@ export default async function Home() {
 
   try {
     data = await customFetch(
-      "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
+      `${process.env.NEXT_PUBLIC_BASE_URL}/popular?language=en-US&page=1`,
       {},
       "no-cache"
     );
     firstData = data?.results?.[0];
-  } catch (error) {
+  } catch {
     error = "Error fetching data";
   }
 

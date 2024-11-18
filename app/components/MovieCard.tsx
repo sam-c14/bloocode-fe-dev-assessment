@@ -1,6 +1,7 @@
 import { FC } from "react";
 import Link from "next/link";
 import { Movie } from "../types";
+import Image from "next/image";
 
 type MovieCardProps = {
   data: Movie;
@@ -9,8 +10,10 @@ type MovieCardProps = {
 const MovieCard: FC<MovieCardProps> = ({ data }) => {
   return (
     <div className="relative border-black border rounded-lg shadow-md overflow-hidden group">
-      <img
+      <Image
         src={`https://image.tmdb.org/t/p/w500/${data?.poster_path}`}
+        width={500}
+        height={500}
         alt="poster-img"
         className="w-full h-10/12 rounded-md"
       />

@@ -59,7 +59,7 @@ const MovieGrid = ({ movie_data, useFavorites }: MovieGrid) => {
   return (
     <div>
       <div className="grid xl:grid-cols-4 md:grid-cols-3 grid-cols-1 mt-16 gap-7 px-10">
-        {movies.map((data, index) => (
+        {movies?.map((data, index) => (
           <MovieCard data={data} key={index} />
         ))}
       </div>

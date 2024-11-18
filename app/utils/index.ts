@@ -1,14 +1,14 @@
-type DebounceFunction<T extends (...args: any[]) => void> = (
+type DebounceFunction<T extends (...args: any[]) => unknown> = (
   ...args: Parameters<T>
 ) => void;
 
-const debounce = <T extends (...args: any[]) => void>(
+const debounce = <T extends (...args: any[]) => unknown>(
   fn: T,
   delay: number
 ): DebounceFunction<T> => {
   let timer: NodeJS.Timeout | null = null;
 
-  return (...args: Parameters<T>): void => {
+  return (...args: Parameters<T>) => {
     if (timer) {
       clearTimeout(timer);
     }

@@ -16,7 +16,7 @@ const Favorite: FC<FavoriteProps> = ({ item }) => {
 
   const isFavorite = useMemo(
     () => !!storedValue?.find((value) => value.id === item.id),
-    [storedValue]
+    [storedValue, item.id]
   );
 
   const addItem = () => {

@@ -2,7 +2,7 @@ import { Movie } from "../types";
 
 export const customFetch = async (
   url: string,
-  options?: any,
+  options?: RequestInit,
   cache = "force-cache"
 ) => {
   try {
@@ -23,9 +23,12 @@ export const customFetch = async (
     }
 
     return await response.json();
-  } catch (error) {
-    console.error("Fetch error:", error);
-    throw error;
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    } else {
+      throw new Error("An unknown error occurred.");
+    }
   }
 };
 
@@ -40,12 +43,16 @@ export const fetcher = async (url: string) => {
 export const getMoreMovies = async (page: number): Promise<Movie[]> => {
   try {
     const response = await customFetch(
-      `https://api.themoviedb.org/3/movie/popular?language=en-US&page=${page}`,
+      `${process.env.NEXT_PUBLIC_BASE_URL}popular?language=en-US&page=${page}`,
       {},
       "no-cache"
     );
     return response?.results;
-  } catch (error: any) {
-    throw new Error(error?.message);
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    } else {
+      throw new Error("An unknown error occurred.");
+    }
   }
 };
